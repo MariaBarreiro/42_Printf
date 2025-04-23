@@ -10,8 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <unistd.h>
+#include "ft_printf.h"
+
+int	ft_case(va_list args, const char format);
+int	ft_hex_len(unsigned int content);
+char *ft_unsigned_itoa(unsigned int content);
+int ft_unsigned_len(unsigned int content);
+int	ft_print_unsigned(unsigned int content);
+int	ft_print_nbr(int content);
+int	ft_print_char(int content);
+int	ft_put_str(char *content);
+int	ft_print_str(char *content);
 
 int	ft_printf(const char *format, ...)
 {
@@ -49,32 +58,51 @@ int	ft_case(va_list args, const char format)
 
 	len = 0;
 	if (format == '%')
-		len = ft_printchar('%');
+		len = ft_print_char('%');
 	else if (format == 'c')
-		len = ft_printchar(va_arg(args, char));
+		len = ft_print_char(va_arg(args, int));
 	else if (format == 's')
-		len = ft_printstr(va_args(args, char *));
-	else if (format == 'p')
-		len = va_args(args, unsigned long long)
+		len = ft_print_str(va_arg(args, char *));
+	// else if (format == 'p')
+	// 	len = va_arg(args, unsigned long long)
 	else if (format == 'd' || format == 'i')
-		len = ft_printnbr(va_args(args, int));
+		len = ft_print_nbr(va_arg(args, int));
 	else if (format == 'u')
-		len = ft_printunsigned(va_args(args, unsigned int));
-	else if (format == 'x')
-		len = 
-	else if (format == 'X')
-		len = 
+		len = ft_print_unsigned(va_arg(args, unsigned int));
+	// else if (format == 'x')
+	// 	len = 
+	// elelse if (format == 'X')
+	// 	len = 
 	return (len);
 }
 
+///ft_putnbr_hex 
+
+///ft_hex_len PARA CONTAR DIGITOS DO PUTNBR_HEX (?)
+
+// int	ft_hex_len(unsigned int content)
+// {
+// 	unsigned int	length;
+//
+// 	length = 0;
+// 	while (content)
+// 	{
+// 		
+// 	}
+// }
+
+///ft_print_hex PARA PRINTAR HEXADECIMAIS
+
+
+
 ///Unsigneditoa PARA PRINT UNSIGNED
 
-char *ft_unsigneditoa(unsigned int content)
+char *ft_unsigned_itoa(unsigned int content)
 {
 	unsigned int		len;
 	char			*str_converted;
 
-	len = ft_unsignedlen(n);
+	len = ft_unsigned_len(content);
 	if (content == 0)
 		return (ft_strdup("0"));
 	str_converted = (char *)malloc((len + 1) * sizeof(char));
@@ -93,52 +121,52 @@ char *ft_unsigneditoa(unsigned int content)
 	return (str_converted);
 }
 
-///ft_unsignedlen PARA CONTAR DIGITOS DO UNSIGNED ITOA
+///ft_unsigned_len PARA CONTAR DIGITOS DO UNSIGNED ITOA
 
-unsigned int ft_unsignedlen(unsigned int content)
+int ft_unsigned_len(unsigned int content)
 {
-	unsigned int	len;
+	unsigned int	length;
 
-	len = 0;
+	length = 0;
 	if (content <= 0)
-		len = 1;
+		length = 1;
 	while (content)
 	{
 		content /= 10;
-		len++;
+		length++;
 	}
-	return (len);
+	return (length);
 }
 
 ///printunsigned PARA UNSIGNED INT
 
-int	ft_printunsigned(unsigned int content)
+int	ft_print_unsigned(unsigned int content)
 {
 	char *str_converted;
 	unsigned int	len;
 
-	str_converted = ft_unsigneditoa(content);
-	len = ft_printstr(str_converted);
+	str_converted = ft_unsigned_itoa(content);
+	len = ft_print_str(str_converted);
 	free(str_converted);
 	return (len);
 }
 
 ///printnbr PARA INTS
 
-int	ft_printnbr(int	content)
+int	ft_print_nbr(int content)
 {
 	char *converted;
 	int	len;
 
 	converted = ft_itoa(content);
-	len = ft_printstr(converted);
+	len = ft_print_str(converted);
 	free(converted);
 	return (len);
 }
 
 ///printchar PARA CHAR
 
-int	ft_printchar(int content)
+int	ft_print_char(int content)
 {
 	write (1, &content, 1);
 	return (1);
@@ -146,14 +174,14 @@ int	ft_printchar(int content)
 
 ///putstr PARA PRINTSTR
 
-int	ft_putstr(char *content)
+int	ft_put_str(char *content)
 {
 	size_t	i;
 
 	i = 0;
 	while (content[i])
 	{
-		write (1, &content[i], 1)
+		write (1, &content[i], 1);
 		i++;
 	}
 	return (i);
@@ -161,14 +189,14 @@ int	ft_putstr(char *content)
 
 ///Printstr PARA CHAR *
 
-int	ft_printstr(char *content)
+int	ft_print_str(char *content)
 {
 	size_t	len;
 
 	len = 0;
 	if (content == NULL)
-		len = ft_putstr("(null)");
+		len = ft_put_str("(null)");
 	else
-		len = ft_putstr(content);
+		len = ft_put_str(content);
 	return (len);
 }

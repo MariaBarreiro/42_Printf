@@ -7,6 +7,7 @@ SHELL = bash
 #                                    NAMES                                     #
 # **************************************************************************** #
 NAME = libftprintf.a
+EXEC = a.out
 # **************************************************************************** #
 #                                    Paths                                     #
 # **************************************************************************** #
@@ -14,8 +15,8 @@ SRC_PATH        = .
 INC_PATH        = .
 #####BUILD_PATH			= .build
 
-FILES           = ft_bzero.c
-FILES						+= ft_putnbr_fd.c
+FILES           = ft_printf.c
+FILES						+= ft_utils.c
 
 SRC             = $(addprefix $(SRC_PATH)/, $(FILES))
 OBJS            = $(SRC:%.c=%.o)
@@ -40,6 +41,9 @@ all: $(BUILD_PATH) $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
+
+test: $(NAME)
+	$(CC) $(CFLAGS) main.c $(OBJS) -o $(EXEC)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
