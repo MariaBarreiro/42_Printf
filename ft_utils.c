@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mda-enca <mda-enca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 19:06:40 by mda-enca          #+#    #+#             */
-/*   Updated: 2025/04/14 19:54:42 by mda-enca         ###   ########.fr       */
+/*   Created: 2025/04/24 11:39:04 by mda-enca          #+#    #+#             */
+/*   Updated: 2025/04/24 11:39:43 by mda-enca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_strlen(const char *str);
-char	*ft_strdup(const char *s);
-static char			*ft_char(char *str, unsigned int nb, long int len);
-static unsigned int	ft_countdigits(int n);
+size_t			ft_strlen(const char *str);
+char			*ft_strdup(const char *s);
+char			*ft_char(char *str, unsigned int nb, long int len);
+unsigned int	ft_countdigits(int n);
+void	ft_putchar_fd(char c, int fd);
 
 char	*ft_itoa(int n)
 {
@@ -40,7 +41,7 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-static unsigned int	ft_countdigits(int n)
+unsigned int	ft_countdigits(int n)
 {
 	unsigned int	len;
 
@@ -55,7 +56,7 @@ static unsigned int	ft_countdigits(int n)
 	return (len);
 }
 
-static char	*ft_char(char *str, unsigned int nb, long int len)
+char	*ft_char(char *str, unsigned int nb, long int len)
 {
 	while (nb > 0)
 	{
@@ -95,3 +96,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
+void	ft_putchar_fd(char c, int fd)
+{
+	write (fd, &c, 1);
+}

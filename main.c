@@ -12,15 +12,12 @@
 
 #include "ft_printf.h"
 #include <stdio.h>
+#include <unistd.h>
 
-void ft_format_percent();
-
-int main() {
-	ft_format_percent();
+int main(){
+	int i = 42;
+	printf("%p\n", &i);
+	ft_printf("%x\nSchizophrenia", 17);
+	return (0);
 }
 
-void ft_format_percent() {
-	printf("%%\n", 1);
-	ft_printf("%%\n", 1);
-	
-}

@@ -11,21 +11,25 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-int	ft_case(va_list args, const char format);
-int	ft_hex_len(unsigned int content);
-char *ft_unsigned_itoa(unsigned int content);
-int ft_unsigned_len(unsigned int content);
-int	ft_print_unsigned(unsigned int content);
-int	ft_print_nbr(int content);
-int	ft_print_char(int content);
-int	ft_put_str(char *content);
-int	ft_print_str(char *content);
+int		ft_case(va_list args, const char format);
+int		ft_hex_len(unsigned int content);
+char	*ft_unsigned_itoa(unsigned int content);
+int		ft_unsigned_len(unsigned int content);
+int		ft_print_unsigned(unsigned int content);
+int		ft_print_nbr(int content);
+int		ft_print_char(int content);
+int		ft_put_str(char *content);
+int		ft_print_str(char *content);
+void	ft_hex_itoa(unsigned int content, const char format);
+int		ft_hex_len(unsigned int content);
+int		ft_print_hex(unsigned int content, const char format);
 
 int	ft_printf(const char *format, ...)
 {
-	size_t	i;
-	va_list	args;
+	size_t		i;
+	va_list		args;
 	int			len;
 
 	i = 0;
@@ -35,11 +39,11 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			///verificar formato e printar conforme isso
-			///ignorar %
+			ft_case(args, format[i + 1]);///verificar formato e printar conforme isso
+			i++; ///ignorar %
 		}
 		else
-			///printar o que estiver entre aspas
+			ft_putchar_fd(format[i], 1);	///printar o que estiver entre aspas
 		i++; ///avanca formato (o que estiver a seguir a %) OU 1 caracter (o que
 		///			estiver a seguir as aspas (else case));
 	}
@@ -63,43 +67,94 @@ int	ft_case(va_list args, const char format)
 		len = ft_print_char(va_arg(args, int));
 	else if (format == 's')
 		len = ft_print_str(va_arg(args, char *));
-	// else if (format == 'p')
-	// 	len = va_arg(args, unsigned long long)
+	else if (format == 'p')
+		len = ft_print_ptr(va_arg(args, unsigned long long));
 	else if (format == 'd' || format == 'i')
 		len = ft_print_nbr(va_arg(args, int));
 	else if (format == 'u')
 		len = ft_print_unsigned(va_arg(args, unsigned int));
-	// else if (format == 'x')
-	// 	len = 
-	// elelse if (format == 'X')
-	// 	len = 
+	else if (format == 'x' || format == 'X')
+		len = ft_print_hex(va_arg(args, unsigned int), format);
 	return (len);
 }
 
-///ft_putnbr_hex 
+///ft_ptr_itoa
 
-///ft_hex_len PARA CONTAR DIGITOS DO PUTNBR_HEX (?)
 
-// int	ft_hex_len(unsigned int content)
-// {
-// 	unsigned int	length;
-//
-// 	length = 0;
-// 	while (content)
-// 	{
-// 		
-// 	}
-// }
+
+///ft_ptr_len
+
+int	ft_ptr_len(unsigned long long content)
+{
+
+}
+
+///ft_print_ptr
+
+int	ft_print_ptr(unsigned long long content)
+{
+	unsigned int	len;
+
+	len = ft_ptr_len(content);
+	return (len)
+}
+
+///ft_hex_itoa 
+
+void	ft_hex_itoa(unsigned int content, const char format)
+{
+	if (content >= 16)
+	{
+		ft_hex_itoa(content / 16, format);
+		ft_hex_itoa(content % 16, format);
+	}
+	else
+	{
+		if (content <= 9)
+		{
+			ft_putchar_fd((content + '0'), 1);
+		}
+		if (content > 9 && content <= 16)
+		{
+			if (format == 'x')
+				ft_putchar_fd(((content - 10) + 'a'), 1);
+			if (format == 'X')
+				ft_putchar_fd(((content - 10) + 'A'), 1);
+		}
+	}
+}
+
+///ft_hex_len PARA CONTAR A LEN DO HEX A RETORNAR
+
+int	ft_hex_len(unsigned int content)
+{
+	unsigned int	length;
+
+	length = 0;
+	while (content != 0)
+	{
+		content /= 16;
+		length++;
+	}
+	return (length);
+}
 
 ///ft_print_hex PARA PRINTAR HEXADECIMAIS
 
+int	ft_print_hex(unsigned int content, const char format)
+{
+	unsigned int	len;
 
+	ft_hex_itoa(content, format);
+	len = ft_hex_len(content);
+	return (len);
+}
 
 ///Unsigneditoa PARA PRINT UNSIGNED
 
-char *ft_unsigned_itoa(unsigned int content)
+char	*ft_unsigned_itoa(unsigned int content)
 {
-	unsigned int		len;
+	unsigned int	len;
 	char			*str_converted;
 
 	len = ft_unsigned_len(content);
@@ -108,11 +163,6 @@ char *ft_unsigned_itoa(unsigned int content)
 	str_converted = (char *)malloc((len + 1) * sizeof(char));
 	if (!str_converted)
 		return (0);
-	if (content < 0)
-	{
-		content = -content;
-		str_converted[0] = '-';
-	}
 	while (content > 0)
 	{
 		str_converted[len--] = (content % 10) + '0';
@@ -123,7 +173,7 @@ char *ft_unsigned_itoa(unsigned int content)
 
 ///ft_unsigned_len PARA CONTAR DIGITOS DO UNSIGNED ITOA
 
-int ft_unsigned_len(unsigned int content)
+int	ft_unsigned_len(unsigned int content)
 {
 	unsigned int	length;
 
@@ -142,7 +192,7 @@ int ft_unsigned_len(unsigned int content)
 
 int	ft_print_unsigned(unsigned int content)
 {
-	char *str_converted;
+	char			*str_converted;
 	unsigned int	len;
 
 	str_converted = ft_unsigned_itoa(content);
@@ -155,8 +205,8 @@ int	ft_print_unsigned(unsigned int content)
 
 int	ft_print_nbr(int content)
 {
-	char *converted;
-	int	len;
+	char	*converted;
+	int		len;
 
 	converted = ft_itoa(content);
 	len = ft_print_str(converted);
