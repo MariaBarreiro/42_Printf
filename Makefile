@@ -17,6 +17,11 @@ INC_PATH        = .
 
 FILES           = ft_printf.c
 FILES						+= ft_utils.c
+FILES						+= ft_utils2.c
+FILES						+= ft_printf_ptr.c
+FILES						+= ft_printf_hex.c
+FILES						+= ft_printf_printstr.c
+FILES						+= ft_printf_uns.c
 
 SRC             = $(addprefix $(SRC_PATH)/, $(FILES))
 OBJS            = $(SRC:%.c=%.o)

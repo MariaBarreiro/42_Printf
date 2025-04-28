@@ -6,17 +6,15 @@
 /*   By: mda-enca <mda-enca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 11:39:04 by mda-enca          #+#    #+#             */
-/*   Updated: 2025/04/24 11:39:43 by mda-enca         ###   ########.fr       */
+/*   Updated: 2025/04/26 07:32:37 by mda-enca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t			ft_strlen(const char *str);
 char			*ft_strdup(const char *s);
 char			*ft_char(char *str, unsigned int nb, long int len);
 unsigned int	ft_countdigits(int n);
-void	ft_putchar_fd(char c, int fd);
 
 char	*ft_itoa(int n)
 {
@@ -84,19 +82,4 @@ char	*ft_strdup(const char *s)
 	}
 	dup[n] = '\0';
 	return (dup);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write (fd, &c, 1);
 }
