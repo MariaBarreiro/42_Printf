@@ -29,11 +29,11 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			ft_case(args, format[i + 1]);
+			len += ft_case(args, format[i + 1]);
 			i++;
 		}
 		else
-			ft_putchar_fd(format[i], 1);
+			len += ft_print_char(format[i]);
 		i++;
 	}
 	va_end(args);
@@ -46,19 +46,19 @@ int	ft_case(va_list args, const char format)
 
 	len = 0;
 	if (format == '%')
-		len = ft_print_char('%');
+		len += ft_print_char('%');
 	else if (format == 'c')
-		len = ft_print_char(va_arg(args, int));
+		len += ft_print_char(va_arg(args, int));
 	else if (format == 's')
-		len = ft_print_str(va_arg(args, char *));
+		len += ft_print_str(va_arg(args, char *));
 	else if (format == 'p')
-		len = ft_print_ptr(va_arg(args, unsigned long long));
+		len += ft_print_ptr(va_arg(args, unsigned long long));
 	else if (format == 'd' || format == 'i')
-		len = ft_print_nbr(va_arg(args, int));
+		len += ft_print_nbr(va_arg(args, int));
 	else if (format == 'u')
-		len = ft_print_unsigned(va_arg(args, unsigned int));
+		len += ft_print_unsigned(va_arg(args, unsigned int));
 	else if (format == 'x' || format == 'X')
-		len = ft_print_hex(va_arg(args, unsigned int), format);
+		len += ft_print_hex(va_arg(args, unsigned int), format);
 	return (len);
 }
 
@@ -75,6 +75,6 @@ int	ft_print_nbr(int content)
 
 int	ft_print_char(int content)
 {
-	write (1, &content, 1);
+	write (1, &content, 1);
 	return (1);
 }

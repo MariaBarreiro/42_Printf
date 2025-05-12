@@ -21,15 +21,14 @@ char	*ft_unsigned_itoa(unsigned int content)
 	char			*str_converted;
 
 	len = ft_unsigned_len(content);
-	if (content == 0)
-		return (ft_strdup("0"));
 	str_converted = (char *)malloc((len + 1) * sizeof(char));
 	if (!str_converted)
 		return (0);
-	while (content > 0)
+	while (content != 0)
 	{
-		str_converted[len--] = (content % 10) + '0';
+		str_converted[len - 1] = (content % 10) + '0';
 		content /= 10;
+		len--;
 	}
 	return (str_converted);
 }
@@ -39,9 +38,7 @@ int	ft_unsigned_len(unsigned int content)
 	unsigned int	length;
 
 	length = 0;
-	if (content <= 0)
-		length = 1;
-	while (content)
+	while (content != 0)
 	{
 		content /= 10;
 		length++;
@@ -54,8 +51,14 @@ int	ft_print_unsigned(unsigned int content)
 	char			*str_converted;
 	unsigned int	len;
 
-	str_converted = ft_unsigned_itoa(content);
-	len = ft_print_str(str_converted);
-	free(str_converted);
+	len = 0;
+	if (content == 0)
+		len += write (1, "0", 1);
+	else
+	{
+		str_converted = ft_unsigned_itoa(content);
+		len += ft_print_str(str_converted);
+		free(str_converted);
+	}
 	return (len);
 }

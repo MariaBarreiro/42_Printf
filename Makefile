@@ -47,8 +47,8 @@ all: $(BUILD_PATH) $(NAME)
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
-test: $(NAME)
-	$(CC) $(CFLAGS) main.c $(OBJS) -o $(EXEC)
+# test: $(NAME)
+# 	$(CC) $(CFLAGS) main.c $(OBJS) -o $(EXEC)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@

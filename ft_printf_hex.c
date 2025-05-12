@@ -54,8 +54,10 @@ int	ft_hex_len(unsigned int content)
 int	ft_print_hex(unsigned int content, const char format)
 {
 	unsigned int	len;
-
-	ft_hex_itoa(content, format);
+	if (content == 0)
+		return(write(1, "0", 1));
+	else
+		ft_hex_itoa(content, format);
 	len = ft_hex_len(content);
 	return (len);
 }
