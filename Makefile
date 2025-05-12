@@ -20,7 +20,7 @@ FILES						+= ft_utils.c
 FILES						+= ft_utils2.c
 FILES						+= ft_printf_ptr.c
 FILES						+= ft_printf_hex.c
-FILES						+= ft_printf_printstr.c
+FILES						+= ft_printf_str.c
 FILES						+= ft_printf_uns.c
 
 SRC             = $(addprefix $(SRC_PATH)/, $(FILES))

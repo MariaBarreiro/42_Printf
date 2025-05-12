@@ -14,8 +14,6 @@
 
 int	ft_print_str(char *content);
 
-///putstr PARA PRINTSTR
-
 int	ft_put_str(char *content)
 {
 	size_t	i;
@@ -29,8 +27,6 @@ int	ft_put_str(char *content)
 	return (i);
 }
 
-///Printstr PARA CHAR *
-
 int	ft_print_str(char *content)
 {
 	size_t	len;
@@ -42,4 +38,3 @@ int	ft_print_str(char *content)
 		len = ft_put_str(content);
 	return (len);
 }
-

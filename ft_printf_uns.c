@@ -15,8 +15,6 @@
 int	ft_unsigned_len(unsigned int content);
 int	ft_print_unsigned(unsigned int content);
 
-///Unsigneditoa PARA PRINT UNSIGNED
-
 char	*ft_unsigned_itoa(unsigned int content)
 {
 	unsigned int	len;
@@ -36,8 +34,6 @@ char	*ft_unsigned_itoa(unsigned int content)
 	return (str_converted);
 }
 
-///ft_unsigned_len PARA CONTAR DIGITOS DO UNSIGNED ITOA
-
 int	ft_unsigned_len(unsigned int content)
 {
 	unsigned int	length;
@@ -52,8 +48,6 @@ int	ft_unsigned_len(unsigned int content)
 	}
 	return (length);
 }
-
-///printunsigned PARA UNSIGNED INT
 
 int	ft_print_unsigned(unsigned int content)
 {

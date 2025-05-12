@@ -1,11 +1,12 @@
-
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mda-enca <mda-enca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 15:54:31 by mda-enca          #+#    #+#             */
-/*   Updated: 2025/04/21 18:54:56 by mda-enca         ###   ########.fr       */
+/*   Created: 2025/05/10 09:25:53 by mda-enca          #+#    #+#             */
+/*   Updated: 2025/05/10 09:26:20 by mda-enca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +29,16 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			ft_case(args, format[i + 1]);///verificar formato e printar conforme isso
-			i++; ///ignorar %
+			ft_case(args, format[i + 1]);
+			i++;
 		}
 		else
-			ft_putchar_fd(format[i], 1);	///printar o que estiver entre aspas
-		i++; ///avanca formato (o que estiver a seguir a %) OU 1 caracter (o que
-		///			estiver a seguir as aspas (else case));
+			ft_putchar_fd(format[i], 1);
+		i++;
 	}
-	va_end(args);///terminar os args
-	return (len);///retornar o length do que printei;
+	va_end(args);
+	return (len);
 }
-
-///criar if tree para checkar formatos
-///return da if tree: len a adicionar ao len original!
-///estou a mandar um const char porque apenas quero saber o que esta a seguir
-///		a percentagem!! o char, nao o que esta dentro do endereco do pointer;
 
 int	ft_case(va_list args, const char format)
 {
@@ -66,7 +61,6 @@ int	ft_case(va_list args, const char format)
 		len = ft_print_hex(va_arg(args, unsigned int), format);
 	return (len);
 }
-///printnbr PARA INTS
 
 int	ft_print_nbr(int content)
 {
@@ -78,8 +72,6 @@ int	ft_print_nbr(int content)
 	free(converted);
 	return (len);
 }
-
-///printchar PARA CHAR
 
 int	ft_print_char(int content)
 {

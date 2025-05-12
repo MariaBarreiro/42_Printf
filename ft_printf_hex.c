@@ -15,8 +15,6 @@
 int	ft_hex_len(unsigned int content);
 int	ft_print_hex(unsigned int content, const char format);
 
-///ft_hex_itoa 
-
 void	ft_hex_itoa(unsigned int content, const char format)
 {
 	if (content >= 16)
@@ -40,8 +38,6 @@ void	ft_hex_itoa(unsigned int content, const char format)
 	}
 }
 
-///ft_hex_len PARA CONTAR A LEN DO HEX A RETORNAR
-
 int	ft_hex_len(unsigned int content)
 {
 	unsigned int	length;
@@ -54,8 +50,6 @@ int	ft_hex_len(unsigned int content)
 	}
 	return (length);
 }
-
-///ft_print_hex PARA PRINTAR HEXADECIMAIS
 
 int	ft_print_hex(unsigned int content, const char format)
 {

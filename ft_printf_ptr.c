@@ -15,8 +15,6 @@
 int	ft_ptr_len(uintptr_t content);
 int	ft_print_ptr(unsigned long long content);
 
-///ft_ptr_itoa
-
 void	ft_ptr_itoa(uintptr_t content)
 {
 	if (content >= 16)
@@ -32,7 +30,6 @@ void	ft_ptr_itoa(uintptr_t content)
 			ft_putchar_fd((content - 10 + 'a'), 1);
 	}
 }
-///ft_ptr_len
 
 int	ft_ptr_len(uintptr_t content)
 {
@@ -46,8 +43,6 @@ int	ft_ptr_len(uintptr_t content)
 	}
 	return (len);
 }
-
-///ft_print_ptr
 
 int	ft_print_ptr(unsigned long long content)
 {
