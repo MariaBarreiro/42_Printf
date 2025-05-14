@@ -20,6 +20,15 @@ int main(void)
 	int output_OG;
 	int output_FT;
 
+	ft_printf("------------%%u------------\n");
+	unsigned nbr_u = 42;
+	output_OG = printf("OG -> %u\n", nbr_u);
+	output_FT = ft_printf("FT -> %u\n", nbr_u);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	printf("ft: [%d]\n", ft_printf("ft {%u} ", 0));
+	printf("Og: [%d]\n", printf("Og {%u} ", 0));
 /////////////////////////////////
 //  	  NO SPECIFIERS		   //
 /////////////////////////////////
@@ -311,9 +320,9 @@ int main(void)
 //				%u			   //
 /////////////////////////////////
 	ft_printf("------------%%u------------\n");
-	unsigned nbr_u = 42;
-	output_OG = printf("OG -> %u\n", nbr_u);
-	output_FT = ft_printf("FT -> %u\n", nbr_u);
+	unsigned nbr_un = 42;
+	output_OG = printf("OG -> %u\n", nbr_un);
+	output_FT = ft_printf("FT -> %u\n", nbr_un);
 	printf("OUTPUT OG = %d\n", output_OG);
 	ft_printf("OUTPUT FT = %d\n", output_FT);
 
@@ -655,141 +664,6 @@ int main(void)
 	ft_printf("OUTPUT FT = %d\n", output_FT);
 
 	ft_printf("\n");
-
-	/* Testes para flags bonus */
-    ft_printf("\n\n------------BONUS TESTS------------\n");
-
-/* Testes para # (hash) flag */
-ft_printf("\n---Testing # flag---\n");
-output_OG = printf("[OG -> %#x]\n", 42);
-output_FT = ft_printf("[FT -> %#x]\n", 42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-output_OG = printf("[OG -> %#X]\n", 42);
-output_FT = ft_printf("[FT -> %#X]\n", 42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-/* Testes para + flag */
-ft_printf("\n---Testing + flag---\n");
-output_OG = printf("[OG -> %+d]\n", 42);
-output_FT = ft_printf("[FT -> %+d]\n", 42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-ft_printf("\n---Testing + flag---\n");
-output_OG = printf("[OG -> %+d]\n", 424242);
-output_FT = ft_printf("[FT -> %+d]\n", 424242);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-output_OG = printf("[OG -> %+d]\n", -42);
-output_FT = ft_printf("[FT -> %+d]\n", -42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-/* Testes para space flag */
-ft_printf("\n---Testing space flag---\n");
-output_OG = printf("[OG -> % d]\n", 42);
-output_FT = ft_printf("[FT -> % d]\n", 42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-output_OG = printf("[OG -> % d]\n", -42);
-output_FT = ft_printf("[FT -> % d]\n", -42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-/* Testes para precision (.) */
-ft_printf("\n---Testing precision (.)---\n");
-output_OG = printf("[OG -> %.5d]\n", 42);
-output_FT = ft_printf("[FT -> %.5d]\n", 42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-output_OG = printf("[OG -> %.10s]\n", "hello world");
-output_FT = ft_printf("[FT -> %.10s]\n", "hello world");
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-/* Testes para minus (-) flag */
-ft_printf("\n---Testing minus (-)---\n");
-output_OG = printf("[OG -> %-10d]\n", 42);
-output_FT = ft_printf("[FT -> %-10d]\n", 42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-output_OG = printf("[OG -> %-10s]\n", "left");
-output_FT = ft_printf("[FT -> %-10s]\n", "left");
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-/* Testes para zero padding */
-ft_printf("\n---Testing zero padding---\n");
-output_OG = printf("[OG -> %05d]\n", 42);
-output_FT = ft_printf("[FT -> %05d]\n", 42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-/* Testes com INT_MIN */
-ft_printf("\n---Testing INT_MIN with flags---\n");
-output_OG = printf("[OG -> %-15d]\n", INT_MIN);
-output_FT = ft_printf("[FT -> %-15d]\n", INT_MIN);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-/* Combinações de flags */
-ft_printf("\n---Testing flag combinations---\n");
-output_OG = printf("[OG -> %#-10x]\n", 42);
-output_FT = ft_printf("[FT -> %#-10x]\n", 42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-output_OG = printf("[OG -> %+d]\n", 42);
-output_FT = ft_printf("[FT -> %+d]\n", 42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-output_OG = printf("[OG -> %+05d]\n", 42);
-output_FT = ft_printf("[FT -> %+05d]\n", 42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-/* Múltiplas precisões */
-ft_printf("\n---Testing multiple precisions---\n");
-output_OG = printf("[OG -> %.0d %.1d %.2d %.3d %.4d %.5d]\n", 42, 42, 42, 42, 42, 42);
-output_FT = ft_printf("[FT -> %.0d %.1d %.2d %.3d %.4d %.5d]\n", 42, 42, 42, 42, 42, 42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-/* Casos extremos e suas combinações */
-ft_printf("\n---Testing edge cases---\n");
-output_OG = printf("[OG -> %#.5x]\n", 0);
-output_FT = ft_printf("[FT -> %#.5x]\n", 0);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-output_OG = printf("[OG -> %+.d]\n", 0);
-output_FT = ft_printf("[FT -> %+.d]\n", 0);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-/* Testes adicionais */
-output_OG = printf("[OG -> % .5d]\n", -42);
-output_FT = ft_printf("[FT -> % .5d]\n", -42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-output_OG = printf("[OG -> %#-8.5x]\n", 42);
-output_FT = ft_printf("[FT -> %#-8.5x]\n", 42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
-
-output_OG = printf("[OG -> %+-8.5d]\n", 42);
-output_FT = ft_printf("[FT -> %+-8.5d]\n", 42);
-printf("OUTPUT OG = %d\n", output_OG);
-ft_printf("OUTPUT FT = %d\n", output_FT);
 
 	return (0);
 }

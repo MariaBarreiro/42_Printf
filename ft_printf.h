@@ -32,12 +32,11 @@ int		ft_ptr_len(uintptr_t content);
 int		ft_print_ptr(unsigned long long content);
 int		ft_hex_len(unsigned int content);
 char	*ft_itoa(int n);
-char	*ft_unsigned_itoa(unsigned int content);
+char	*ft_unsigned_to_str(unsigned int content);
 char	*ft_strdup(const char *s);
 void	ft_putchar_fd(char c, int fd);
-void	ft_ptr_itoa(uintptr_t content);
-void	ft_hex_itoa(unsigned int content, const char format);
+void	ft_ptr_digits(uintptr_t content);
+void	ft_hex_digits(unsigned int content, const char format);
 size_t	ft_strlen(const char *str);
-// int	main();
 
 #endif

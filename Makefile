@@ -30,7 +30,7 @@ OBJS            = $(SRC:%.c=%.o)
 #                                   Compiler                                   #
 # **************************************************************************** #
 CC              = cc
-CFLAGS          = -Wall -Wextra -Werror
+CFLAGS          = -Wall -Wextra -Werror -g
 INC             = -I $(INC_PATH)
 # **************************************************************************** #
 #                                   Commands                                   #
@@ -46,9 +46,6 @@ all: $(BUILD_PATH) $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
-
-# test: $(NAME)
-# 	$(CC) $(CFLAGS) main.c $(OBJS) -o $(EXEC)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@

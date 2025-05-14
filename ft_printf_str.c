@@ -21,7 +21,7 @@ int	ft_put_str(char *content)
 	i = 0;
 	while (content[i])
 	{
-		write (1, &content[i], 1);
+		write(1, &content[i], 1);
 		i++;
 	}
 	return (i);
@@ -32,9 +32,15 @@ int	ft_print_str(char *content)
 	size_t	len;
 
 	len = 0;
-	if (content == NULL)
+	if (!content)
+	{
 		len += ft_put_str("(null)");
-	else
-		len += ft_put_str(content);
-	return (len);
+		return ((int)len);
+	}
+	while (content[len])
+	{
+		ft_putchar_fd(content[len], 1);
+		len++;
+	}
+	return ((int)len);
 }

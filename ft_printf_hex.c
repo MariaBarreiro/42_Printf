@@ -15,12 +15,15 @@
 int	ft_hex_len(unsigned int content);
 int	ft_print_hex(unsigned int content, const char format);
 
-void	ft_hex_itoa(unsigned int content, const char format)
+///Recursively output hexadecimal digits of 'content' using lowercase (x) 
+///		or uppercase (X);
+
+void	ft_hex_digits(unsigned int content, const char format)
 {
 	if (content >= 16)
 	{
-		ft_hex_itoa(content / 16, format);
-		ft_hex_itoa(content % 16, format);
+		ft_hex_digits(content / 16, format);
+		ft_hex_digits(content % 16, format);
 	}
 	else
 	{
@@ -38,6 +41,9 @@ void	ft_hex_itoa(unsigned int content, const char format)
 	}
 }
 
+///Return the number of hexadecimal digits required to represent the 
+///		'content';
+
 int	ft_hex_len(unsigned int content)
 {
 	unsigned int	length;
@@ -54,10 +60,12 @@ int	ft_hex_len(unsigned int content)
 int	ft_print_hex(unsigned int content, const char format)
 {
 	unsigned int	len;
+
+	len = 0;
 	if (content == 0)
-		return(write(1, "0", 1));
+		return (write(1, "0", 1));
 	else
-		ft_hex_itoa(content, format);
+		ft_hex_digits(content, format);
 	len = ft_hex_len(content);
 	return (len);
 }

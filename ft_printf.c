@@ -20,24 +20,24 @@ int	ft_printf(const char *format, ...)
 {
 	size_t		i;
 	va_list		args;
-	int			len;
+	int			total_len;
 
 	i = 0;
 	va_start(args, format);
-	len = 0;
+	total_len = 0;
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1])
 		{
-			len += ft_case(args, format[i + 1]);
+			total_len += ft_case(args, format[i + 1]);
 			i++;
 		}
-		else
-			len += ft_print_char(format[i]);
+		else if (format[i])
+			total_len += ft_print_char(format[i]);
 		i++;
 	}
 	va_end(args);
-	return (len);
+	return (total_len);
 }
 
 int	ft_case(va_list args, const char format)
@@ -75,6 +75,6 @@ int	ft_print_nbr(int content)
 
 int	ft_print_char(int content)
 {
-	write (1, &content, 1);
+	write (1, &content, 1);
 	return (1);
 }

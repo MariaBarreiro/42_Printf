@@ -15,12 +15,14 @@
 int	ft_ptr_len(uintptr_t content);
 int	ft_print_ptr(unsigned long long content);
 
-void	ft_ptr_itoa(uintptr_t content)
+///Recursively output hexadecimal digits of 'content' in lowercase
+
+void	ft_ptr_digits(uintptr_t content)
 {
 	if (content >= 16)
 	{
-		ft_ptr_itoa(content / 16);
-		ft_ptr_itoa(content % 16);
+		ft_ptr_digits(content / 16);
+		ft_ptr_digits(content % 16);
 	}
 	else
 	{
@@ -30,6 +32,8 @@ void	ft_ptr_itoa(uintptr_t content)
 			ft_putchar_fd((content - 10 + 'a'), 1);
 	}
 }
+
+///Calculate the number of hex digits for 'content'
 
 int	ft_ptr_len(uintptr_t content)
 {
@@ -43,6 +47,8 @@ int	ft_ptr_len(uintptr_t content)
 	}
 	return (len);
 }
+
+///Print a pointer value with the prefix
 
 int	ft_print_ptr(unsigned long long content)
 {
@@ -59,7 +65,7 @@ int	ft_print_ptr(unsigned long long content)
 		to_print = write(1, "0", 1);
 	else
 	{
-		ft_ptr_itoa(content);
+		ft_ptr_digits(content);
 		to_print += ft_ptr_len(content);
 	}
 	return (to_print);
