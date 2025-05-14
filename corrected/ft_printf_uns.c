@@ -15,7 +15,7 @@
 int	ft_unsigned_len(unsigned int content);
 int	ft_print_unsigned(unsigned int content);
 
-char	*ft_unsigned_itoa(unsigned int content)
+char	*ft_unsigned_to_str(unsigned int content)
 {
 	unsigned int	len;
 	char			*str_converted;
@@ -54,7 +54,7 @@ int	ft_print_unsigned(unsigned int content)
 	char			*str_converted;
 	unsigned int	len;
 
-	str_converted = ft_unsigned_itoa(content);
+	str_converted = ft_unsigned_to_str(content);
 	len = 0;
 	if (content == 0)
 		len += write (1, "0", 1);

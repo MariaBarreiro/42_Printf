@@ -33,8 +33,8 @@ int	ft_print_str(char *content)
 
 	len = 0;
 	if (content == NULL)
-		len = ft_put_str("(null)");
+		len += ft_put_str("(null)");
 	else
-		len = ft_put_str(content);
+		len += ft_put_str(content);
 	return (len);
 }
